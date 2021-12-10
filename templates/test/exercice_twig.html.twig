@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+<h3>Q1</h3>
+
+{% for perso in personnes %}
+    <div>
+
+    <b>{{perso.nom}} {{perso.prenom}}</b>({{perso.statut}}),
+    <i> date de naissance : {{perso.naissance|date('d-m-y')}}</i>
+    
+    </div>
+{% endfor %}
+
+<h3>Q2</h3>
+
+{% for perso in personnes %}
+   
+    {% if perso.nom == 'Dupont' %}
+     <div>
+    <b>{{perso.nom}} {{perso.prenom}}</b>({{perso.statut}}),
+    <i> date de naissance : {{perso.naissance|date('d-m-y')}}</i>
+    
+    </div>
+    {% endif %}
+{% endfor %}
+
+<h3>Q3</h3>
+
+{% for perso in personnes|slice(0,3) %}
+   
+     <div>
+        <b>{{perso.nom|upper}} {{perso.prenom}}</b>({{perso.statut}}),
+        <i> date de naissance : {{perso.naissance|date('d-m-y')}}</i>
+    </div>
+
+{% endfor %}
+
+<h3>Q4</h3>
+
+{% for perso in personnes %}
+
+   {% if perso.naissance|date('y') > 50 %}
+     <div>
+        <b>{{perso.nom|upper}} {{perso.prenom}}</b>({{perso.statut}}),
+        <i> date de naissance : {{perso.naissance|date('d-m-y')}}</i>
+    </div>
+    {% endif %}
+
+{% endfor %}
+
+<h3>Q5</h3>
+{% for perso in personnes|sort((b, a) => b.naissance <=> a.naissance) %}
+
+     <div>
+        <b>{{perso.nom|upper}} {{perso.prenom}}</b>({{perso.statut}}),
+        <i> date de naissance : {{perso.naissance|date('d-m-y')}}</i>
+    </div>
+  
+    
+{% endfor %}
+
+{% endblock %}
